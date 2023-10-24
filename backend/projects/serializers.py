@@ -1,21 +1,24 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework import serializers
 from .models import Project, TechnologyUsed, LanguageUsed
-    
-class TechnologySerializer(ModelSerializer):
-    class Meta:
-        model = TechnologyUsed
-        fields = ['technology_used']
 
 
-class LanguageSerializer(ModelSerializer):
+class LanguageSerializer(serializers.ModelSerializer):
     class Meta:
         model = LanguageUsed
         fields = ['language_name']
 
 
-class ProjectSerializer(ModelSerializer):
-    technologies_used = TechnologySerializer(read_only=True)
+class TechnologySerializer(serializers.ModelSerializer):
+    language_used = LanguageSerializer()
+
+    class Meta:
+        model = TechnologyUsed
+        fields = ['technology_name', 'language_used']
+
+
+class ProjectSerializer(serializers.ModelSerializer):
+    importance = serializers.IntegerField()
 
     class Meta:
         model = Project
-        fields = '__all__'
+        fields = ['id', 'language_used', 'project_name', 'importance', 'technology_used']
