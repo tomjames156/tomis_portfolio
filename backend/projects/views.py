@@ -54,8 +54,9 @@ def get_project_by_language(request, language_name):
 @api_view(['GET'])
 def get_technologies_language_built(request, language_name):
     try:
-        technolgies = TechnologyUsed.objects.filter(language_name=language_name)
+        language = LanguageUsed.objects.get(language_name=language_name)
+        technolgies = TechnologyUsed.objects.filter(language_used=language)
         serializer = TechnologySerializer(technolgies, many=True)
         return Response(serializer.data)
-    except (TechnologyUsed.DoesNotExist, ValueError):
+    except (LanguageUsed.DoesNotExist, TechnologyUsed.DoesNotExist, ValueError):
         return Response(f'No {language_name} frameworks in my tech stack')

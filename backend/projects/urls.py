@@ -6,5 +6,6 @@ urlpatterns = [
     path('projects/', get_projects, name='all_projects'),
     path('technologies/', get_technologies, name='my_tech_stack'),
     path('technology_used/<str:technology_used>', get_project_by_technology, name='project_built_with_technology'),
-    path('language_used/<str:language_name>', get_project_by_language, name='project_built_with_language')
+    path('language_used/<str:language_name>', get_project_by_language, name='project_built_with_language'),
+    path('language_technologies/<str:language_name>', get_technologies_language_built, name='technologies_built_with_language')
 ]
