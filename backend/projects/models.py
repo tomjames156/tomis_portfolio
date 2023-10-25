@@ -27,9 +27,9 @@ class TechnologyUsed(models.Model):
 
 class Project(models.Model):
     project_name = models.CharField(max_length=200, null=False, blank=False)
-    about_project = models.CharField(max_length=5000, null=True, blank=True) # to-do change the blankness
-    technology_used = models.ManyToManyField(TechnologyUsed)
-    language_used = models.ManyToManyField(LanguageUsed)
+    about_project = models.CharField(max_length=5000, null=True, blank=True)
+    technology_used = models.ForeignKey(TechnologyUsed, on_delete=models.CASCADE, null=True)
+    language_used = models.ForeignKey(LanguageUsed, on_delete=models.CASCADE, null=True)
     levels = [
         ('1', 'complex'),
         ('2', 'proud of'),

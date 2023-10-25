@@ -55,7 +55,7 @@ def get_project_by_language(request, language_name):
 def get_technologies_language_built(request, language_name):
     try:
         language = LanguageUsed.objects.get(language_name=language_name)
-        technolgies = TechnologyUsed.objects.filter(language_used=language)
+        technolgies = TechnologyUsed.objects.filter(language_used=language )
         serializer = TechnologySerializer(technolgies, many=True)
         return Response(serializer.data)
     except (LanguageUsed.DoesNotExist, TechnologyUsed.DoesNotExist, ValueError):
