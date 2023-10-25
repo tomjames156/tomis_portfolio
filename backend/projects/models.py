@@ -28,6 +28,7 @@ class TechnologyUsed(models.Model):
 class Project(models.Model):
     project_name = models.CharField(max_length=200, null=False, blank=False)
     project_description = models.CharField(max_length=5000, null=True, blank=True)
+    project_image = models.ImageField(upload_to='project_images', null=True)
     technology_used = models.ForeignKey(TechnologyUsed, on_delete=models.CASCADE, null=True)
     language_used = models.ForeignKey(LanguageUsed, on_delete=models.CASCADE, null=True)
     levels = [
