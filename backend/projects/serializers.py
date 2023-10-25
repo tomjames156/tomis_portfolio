@@ -18,7 +18,9 @@ class TechnologySerializer(serializers.ModelSerializer):
 
 class ProjectSerializer(serializers.ModelSerializer):
     importance = serializers.IntegerField()
+    languages_used = serializers.StringRelatedField(many=True)
+    technologies_used = TechnologySerializer(many=True)
 
     class Meta:
         model = Project
-        fields = ['id', 'language_used', 'project_name', 'importance', 'technology_used']
+        fields = ['id', 'project_name', 'importance', 'languages_used', 'technologies_used']
