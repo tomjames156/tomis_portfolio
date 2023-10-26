@@ -5,13 +5,18 @@ class ScreenShotInline(admin.StackedInline):
     model = ScreenShot
     extra = 3
 
+
+class RepositoryInline(admin.StackedInline):
+    model = Repository
+    extra = 2
+
 class ProjectAdmin(admin.ModelAdmin):
     fieldsets = [
         ("Overview", {"fields": ['project_name', 'project_description', 'project_image', "complexity"]}),
         ("Built With", {"fields": ['technologies_used', 'languages_used']}),
-        ("View Project", {"fields": ['hosted', 'hostable', 'repository_link', 'live_site']})
+        ("View Project", {"fields": ['hosted', 'hostable']})
     ]
-    inlines = [ScreenShotInline]
+    inlines = [ScreenShotInline, RepositoryInline]
 
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(TechnologyUsed)

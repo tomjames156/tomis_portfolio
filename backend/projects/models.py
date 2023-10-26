@@ -55,7 +55,7 @@ class ScreenShot(models.Model):
         verbose_name_plural = 'Screenshots'
     
 
-class RepositoryLink(models.Model):
+class Repository(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='repositories')
     repository_name = models.CharField(max_length=300, blank=False)
     repository_link = models.CharField(max_length=1000, blank=False)
