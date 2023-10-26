@@ -40,3 +40,15 @@ class Project(models.Model):
 
     def __str__(self):
         return self.project_name
+    
+
+class ScreenShot(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    screenshot = models.ImageField(upload_to='project_images/screenshots', null=False)
+
+    def __str__(self):
+        return f"{self.project.project_name} - screenshot {self.pk}"
+    
+    class Meta:
+        verbose_name_plural = 'Screenshots'
+    

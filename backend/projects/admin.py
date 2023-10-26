@@ -11,3 +11,4 @@ class ProjectAdmin(admin.ModelAdmin):
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(TechnologyUsed)
 admin.site.register(LanguageUsed)
+admin.site.register(ScreenShot)
