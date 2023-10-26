@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Project, TechnologyUsed, LanguageUsed
+from .models import Project, TechnologyUsed, LanguageUsed, ScreenShot
 
 
 class LanguageSerializer(serializers.ModelSerializer):
@@ -16,11 +16,18 @@ class TechnologySerializer(serializers.ModelSerializer):
         fields = ['technology_name', 'language_used']
 
 
+class ScreenShotSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ScreenShot
+        fields = ['screenshot']
+
+
 class ProjectSerializer(serializers.ModelSerializer):
     importance = serializers.IntegerField()
     languages_used = serializers.StringRelatedField(many=True)
     technologies_used = TechnologySerializer(many=True)
+    screenshots = ScreenShotSerializer(many=True)
 
     class Meta:
         model = Project
-        fields = ['id', 'project_name', 'project_description', 'project_image', 'importance', 'languages_used', 'technologies_used']
+        fields = ['id', 'project_name', 'project_description', 'project_image', 'importance', 'languages_used', 'technologies_used', 'screenshots']

@@ -43,7 +43,7 @@ class Project(models.Model):
     
 
 class ScreenShot(models.Model):
-    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="screenshots")
     screenshot = models.ImageField(upload_to='project_images/screenshots', null=False)
 
     def __str__(self):
