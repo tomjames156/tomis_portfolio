@@ -29,7 +29,7 @@ class Project(models.Model):
     project_name = models.CharField(max_length=200, null=False, blank=False)
     project_description = models.CharField(max_length=5000, null=True, blank=True)
     project_image = models.ImageField(upload_to='project_images', default='project_images/no_image.png', null=True, blank=True)
-    technologies_used = models.ManyToManyField(TechnologyUsed, related_name='projects', null=True, blank=True)
+    technologies_used = models.ManyToManyField(TechnologyUsed, related_name='projects', blank=True)
     languages_used = models.ManyToManyField(LanguageUsed, related_name='projects')
     levels = [
         ('1', 'complex'),
@@ -37,7 +37,10 @@ class Project(models.Model):
         ('3', 'intermediate'),
         ('4', 'beginner')
     ]
-    importance = models.CharField(choices=levels, max_length=1, default='1')
+    complexity = models.CharField(choices=levels, max_length=1, default='1')
+    hosted = models.BooleanField(default=False)
+    repository_link = models.CharField(max_length=1000, blank=True)
+    live_site = models.CharField(max_length=1000, blank=True)
 
     def __str__(self):
         return self.project_name
