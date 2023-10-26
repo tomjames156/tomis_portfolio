@@ -29,12 +29,13 @@ class Project(models.Model):
     project_name = models.CharField(max_length=200, null=False, blank=False)
     project_description = models.CharField(max_length=5000, null=True, blank=True)
     project_image = models.ImageField(upload_to='project_images', default='project_images/no_image.png', null=True, blank=True)
-    technologies_used = models.ManyToManyField(TechnologyUsed, related_name='projects', null=True)
+    technologies_used = models.ManyToManyField(TechnologyUsed, related_name='projects', null=True, blank=True)
     languages_used = models.ManyToManyField(LanguageUsed, related_name='projects')
     levels = [
         ('1', 'complex'),
-        ('2', 'proud of'),
-        ('3', 'easy')
+        ('2', 'challenging'),
+        ('3', 'intermediate'),
+        ('4', 'beginner')
     ]
     importance = models.CharField(choices=levels, max_length=1, default='1')
 
