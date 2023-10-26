@@ -9,7 +9,7 @@ class ProjectAdmin(admin.ModelAdmin):
     fieldsets = [
         ("Overview", {"fields": ['project_name', 'project_description', 'project_image', "complexity"]}),
         ("Built With", {"fields": ['technologies_used', 'languages_used']}),
-        ("View Project", {"fields": ['hosted', 'repository_link', 'live_site']})
+        ("View Project", {"fields": ['hosted', 'hostable', 'repository_link', 'live_site']})
     ]
     inlines = [ScreenShotInline]
 

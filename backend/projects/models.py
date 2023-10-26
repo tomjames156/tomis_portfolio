@@ -24,7 +24,6 @@ class TechnologyUsed(models.Model):
         verbose_name_plural = 'Technologies Used'
 
 
-
 class Project(models.Model):
     project_name = models.CharField(max_length=200, null=False, blank=False)
     project_description = models.CharField(max_length=5000, null=True, blank=True)
@@ -39,8 +38,7 @@ class Project(models.Model):
     ]
     complexity = models.CharField(choices=levels, max_length=1, default='1')
     hosted = models.BooleanField(default=False)
-    repository_link = models.CharField(max_length=1000, blank=True)
-    live_site = models.CharField(max_length=1000, blank=True)
+    hostable = models.BooleanField(default=False)
 
     def __str__(self):
         return self.project_name
@@ -56,3 +54,14 @@ class ScreenShot(models.Model):
     class Meta:
         verbose_name_plural = 'Screenshots'
     
+
+class RepositoryLink(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='repositories')
+    repository_name = models.CharField(max_length=300, blank=False)
+    repository_link = models.CharField(max_length=1000, blank=False)
+
+
+class LiveSite(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='live_site')
+    site_name = models.CharField(max_length=300, blank=False)
+    site_url = models.CharField(max_length=1000, blank=False)
