@@ -7,6 +7,9 @@ class UserPortfolio(models.Model):
     email = models.EmailField(max_length=500, blank=False)
     bio = models.CharField(max_length=1500, blank=False)
 
+    def __str__(self):
+        return self.user.username
+
 
 class SocialLink(models.Model):
     "A class the represents a social media profile link"

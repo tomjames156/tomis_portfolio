@@ -4,4 +4,4 @@ from .models import *
 class UserPortfolioSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserPortfolio
-        fields = '__all__'
+        fields = ['user', 'email', 'bio']
