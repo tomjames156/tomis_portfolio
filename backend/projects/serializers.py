@@ -23,7 +23,7 @@ class ScreenShotSerializer(serializers.ModelSerializer):
 
 
 class ProjectSerializer(serializers.ModelSerializer):
-    importance = serializers.IntegerField()
+    complexity = serializers.IntegerField()
     languages_used = serializers.StringRelatedField(many=True)
     technologies_used = TechnologySerializer(many=True)
     screenshots = ScreenShotSerializer(many=True)
