@@ -1,7 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class UserPortfolio(models.Model):
     "An class that represents a user and their information"
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     email = models.EmailField(max_length=500, blank=False)
     bio = models.CharField(max_length=1500, blank=False)
 
