@@ -58,10 +58,10 @@ class ScreenShot(models.Model):
 class Repository(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='repositories')
     repository_name = models.CharField(max_length=300, blank=False)
-    repository_link = models.CharField(max_length=1000, blank=False)
+    repository_link = models.URLField(max_length=1000, blank=False)
 
 
 class LiveSite(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='live_site')
     site_name = models.CharField(max_length=300, blank=False)
-    site_url = models.CharField(max_length=1000, blank=False)
+    site_url = models.URLField(max_length=1000, blank=False)
