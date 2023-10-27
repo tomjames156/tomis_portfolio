@@ -20,3 +20,9 @@ class Experience(models.Model):
     role = models.CharField(max_length=100, blank=False)
     timeline = models.CharField(max_length=200, blank=False)
     company = models.CharField(max_length=100, blank=False)
+
+
+class BulletPoint(models.Model):
+    "A class representing a bullet point an experience class"
+    experience = models.ForeignKey(Experience, on_delete=models.CASCADE)
+    bullet_text = models.CharField(max_length=500, blank=False)
