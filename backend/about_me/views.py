@@ -21,3 +21,5 @@ def get_experience(request, username):
     user = User.objects.get(username=username)
     users_portfolio = UserPortfolio.objects.get(user=user)
     work_experience = users_portfolio.work_experience.all()
+    serializer = ExperienceSerializer(work_experience, many=True)
+    return Response(serializer.data)
