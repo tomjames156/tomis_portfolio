@@ -16,5 +16,8 @@ def get_user_info(request, username):
     return Response(serializer.data)
 
 
-# @api_view(['GET'])
-# def get_experience(request):
+@api_view(['GET'])
+def get_experience(request, username):
+    user = User.objects.get(username=username)
+    users_portfolio = UserPortfolio.objects.get(user=user)
+    work_experience = users_portfolio.work_experience.all()

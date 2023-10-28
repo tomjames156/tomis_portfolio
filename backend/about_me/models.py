@@ -37,7 +37,7 @@ class Experience(models.Model):
 
 class BulletPoint(models.Model):
     "A class representing a bullet point an experience class"
-    experience = models.ForeignKey(Experience, on_delete=models.CASCADE)
+    experience = models.ForeignKey(Experience, on_delete=models.CASCADE, related_name='bullet_points')
     bullet_text = models.CharField(max_length=500, blank=False)
 
     def __str__(self):
