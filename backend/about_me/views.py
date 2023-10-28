@@ -14,3 +14,7 @@ def get_user_info(request, username):
     user_info = UserPortfolio.objects.get(user=user)
     serializer = UserPortfolioSerializer(user_info)
     return Response(serializer.data)
+
+
+# @api_view(['GET'])
+# def get_experience(request):

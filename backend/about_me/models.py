@@ -17,6 +17,9 @@ class SocialLink(models.Model):
     social_media = models.CharField(max_length=50, blank=False)
     link_url = models.URLField(max_length=1000, blank=False)
 
+    def __str__(self):
+        return f"{self.user} - {self.social_media}"
+
 
 class Experience(models.Model):
     "A class representing previous experience/places of work"
@@ -25,8 +28,17 @@ class Experience(models.Model):
     timeline = models.CharField(max_length=200, blank=False)
     company = models.CharField(max_length=100, blank=False)
 
+    def __str__(self):
+        return f"{self.user} - {self.company}"
+
+    class Meta:
+        verbose_name_plural = 'Work Experiences'
+
 
 class BulletPoint(models.Model):
     "A class representing a bullet point an experience class"
     experience = models.ForeignKey(Experience, on_delete=models.CASCADE)
     bullet_text = models.CharField(max_length=500, blank=False)
+
+    def __str__(self):
+        return self.bullet_text[:30]
