@@ -18,7 +18,7 @@ class LiveSiteInline(admin.StackedInline):
 
 class ProjectAdmin(admin.ModelAdmin):
     fieldsets = [
-        ("Overview", {"fields": ['project_name', 'project_description', 'project_image', "complexity"]}),
+        ("Overview", {"fields": ['user', 'project_name', 'project_description', 'project_image', "complexity"]}),
         ("Built With", {"fields": ['technologies_used', 'languages_used']}),
         ("View Project", {"fields": ['hosted', 'hostable']})
     ]

@@ -5,7 +5,15 @@ from rest_framework.decorators import api_view
 from .models import *
 from .serializers import *
 
-def welcome(request):
+def initial(request):
+    routes = [
+        {
+            "Endpoint": 'username/projects/',
+            'method': 'GET',
+            'body': None,
+            'description': 'Returns a list of the users '
+        }
+    ]
     return HttpResponse("Welcome to Tomi's portfolio API. Learn about the projects in my portfolio😊")
 
 

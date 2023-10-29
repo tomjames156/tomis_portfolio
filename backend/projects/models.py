@@ -1,5 +1,5 @@
 from django.db import models
-from portfolio_api import settings
+from django.contrib.auth.models import User
 
 
 class LanguageUsed(models.Model):
@@ -25,6 +25,7 @@ class TechnologyUsed(models.Model):
 
 
 class Project(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='projects')
     project_name = models.CharField(max_length=200, null=False, blank=False)
     project_description = models.CharField(max_length=5000, null=True, blank=True)
     project_image = models.ImageField(upload_to='project_images', default='project_images/no_image.png', null=True, blank=True)
