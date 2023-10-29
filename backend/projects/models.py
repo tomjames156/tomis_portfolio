@@ -14,6 +14,7 @@ class LanguageUsed(models.Model):
 
 
 class TechnologyUsed(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="technologies_used", null=False)
     technology_name = models.CharField(max_length=100, blank=False, null=False)
     language_used = models.ForeignKey(LanguageUsed, on_delete=models.CASCADE, null=True, blank=True)
 

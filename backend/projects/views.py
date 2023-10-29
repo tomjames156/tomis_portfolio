@@ -2,33 +2,50 @@ from django.shortcuts import HttpResponse
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+
+from django.contrib.auth.models import User
+
 from .models import *
 from .serializers import *
 
+
+@api_view(['GET'])
 def initial(request):
+    "Describes the api endpoints, access methods and return values"
     routes = [
         {
             "Endpoint": 'username/projects/',
             'method': 'GET',
             'body': None,
-            'description': 'Returns a list of the users '
+            'description': "Returns a list of an existing user's projects based on the username provided"
         }
     ]
-    return HttpResponse("Welcome to Tomi's portfolio API. Learn about the projects in my portfolio😊")
+    return Response(routes)
 
 
 @api_view(['GET'])
-def get_projects(request):
-    projects = Project.objects.all()
-    serializer = ProjectSerializer(projects, many=True)
-    return Response(serializer.data)
+def get_projects(request, username):
+    "Returns a list of the users projects based on the username provided"
+    try:
+        user = User.objects.get(username=username)
+        projects = user.projects.all()
+        serializer = ProjectSerializer(projects, many=True)
+        return Response(serializer.data)
+    except (User.DoesNotExist, ValueError):
+        content = {"User Not Found": f"The user '{username}' does not exist"}
+        return Response(content, status=status.HTTP_404_NOT_FOUND)
 
 
 @api_view(['GET'])
-def get_technologies(request):
-    technologies = TechnologyUsed.objects.all()
-    serializer = TechnologySerializer(technologies, many=True)
-    return Response(serializer.data)
+def get_technologies(request, username):
+    try:
+        user = User.objects.get(username=username)
+        technologies = user.technologies_used.all
+        serializer = TechnologySerializer(technologies, many=True)
+        return Response(serializer.data)
+    except (User.DoesNotExist, ValueError):
+        content = {"User Not Found": f"The user '{username}' does not exist"}
+        return Response(content, status=status.HTTP_404_NOT_FOUND)
 
 
 @api_view(['GET'])
